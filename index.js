@@ -6,15 +6,15 @@ var type = require('utils-type');
 var camelcase = require('camelcase');
 var callersPath = require('callers-path');
 
-function requirem( dirName, pathName, opts){
-  opts = type(opts || pathName).plainObject || type(dirName).plainObject || { };
+function requirem( dirName, pathName){
   dirName = type(dirName).string || path.dirname(callersPath(requirem));
+  var opts = type(pathName || dirName).plainObject || { };
   var parsed = type(pathName).string
     ? path.resolve(dirName, path.basename(pathName))
     : dirName;
   //
   // module?
-  // <^> file or something that resolves to one
+  // <^> file or what resolves to one
   var resolveError = null;
   try {
     parsed = require.resolve(parsed);
@@ -24,11 +24,10 @@ function requirem( dirName, pathName, opts){
   //
   // plain directories left
   //
-  var dirls = null;
-  var dirError = null;
+  var dirls = null, dirError = null;
   try { dirls = fs.readdirSync(parsed); }
     catch(err){ dirError = err; }
-  if( dirError ){ throw resolveError || dirError; }
+  if( dirError ){ throw (resolveError || dirError); }
   //
   // path is dir and exists
   //
