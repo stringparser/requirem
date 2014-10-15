@@ -34,9 +34,7 @@ function requirem( dirName, pathName, opts){
   //
   dirName = parsed;
   var camelName = null, fileExports = { };
-  opts.pattern = type(pathName).regexp
-    || type(dirName).regexp
-    || /\.(js)$/i;
+  opts.pattern = type(pathName || dirName).regexp || /\.(js)$/i;
 
   dirls = dirls.filter(function (fileName){
     if( !opts.pattern.test(fileName) ){ return ; }
