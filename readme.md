@@ -44,10 +44,10 @@ var fileExports = requirem('./partial', /header-(.*)\.js/);
 
 
 // can reload
-var watcher = requirem('gaze').Gaze('./lib/*.js');
-gaze.on('all', function(event, filepath){
+var gaze = new requirem('gaze').Gaze('./lib/*.js')
+gaze.on('all', function(ev, filepath){
   ev.delete || requirem(filepath, { reload : true })
-})
+});
 
 // If a directory is a module it will NOT 
 // be exported as a whole dir but as the module that is
