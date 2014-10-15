@@ -10,7 +10,7 @@
     "should": "*"
   },
   "author": "Javier Carrillo",
-  "description": "requirem already",
+  "description": "require'em with some knobs",
   "repository": "stringparser/requirem",
   "homepage": "https://github.com/stringparser/requirem",
   "keywords": [

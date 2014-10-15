@@ -1,10 +1,10 @@
-# requirem [<img alt="progressed.io" src="http://progressed.io/bar/80" align="right"/>](https://github.com/fehmicansaglam/progressed.io)
+# requiremm [<img alt="progressed.io" src="http://progressed.io/bar/80" align="right"/>](https://github.com/fehmicansaglam/progressed.io)
 
-[<img alt="build" src="http://img.shields.io/travis/stringparser/requirem/master.svg?style=flat-square" align="left"/>](https://travis-ci.org/stringparser/requirem/builds)
-[<img alt="NPM version" src="http://img.shields.io/npm/v/requirem.svg?style=flat-square" align="right"/>](http://www.npmjs.org/package/requirem)
+[<img alt="build" src="http://img.shields.io/travis/stringparser/requiremm/master.svg?style=flat-square" align="left"/>](https://travis-ci.org/stringparser/requiremm/builds)
+[<img alt="NPM version" src="http://img.shields.io/npm/v/requiremm.svg?style=flat-square" align="right"/>](http://www.npmjs.org/package/requiremm)
 <br><br>
 
-Tiny require'em with knobs.
+Tiny requirem'em with knobs.
 
 <table>
 <tr>
@@ -16,36 +16,47 @@ Tiny require'em with knobs.
 ### usage
 
 ```js
-var requirem = require('requirem');
+var requirem = require('requiremm');
 
 // works with no arguments
-var myProject = requirem(); // equivalent to require('./.') form any dir
+var myProject = requirem(); // equivalent to require('./.') from any dir
+// {
+//   someFile : [Function: someFunction] 
+// }
+
+// exports are camelkeyed
+var fileExports = requirem('./lib/utils');
+// {
+//       routeUserAdmin : [Function]  file was "route-user-admin.js"
+//   routeUserSomething : [Function]  file was "route.user.something.js"
+// }
+
+// can requirem sub directories or files
+var subDirExports = requirem(__dirname, 'file');
+var subDirExports = requirem(__dirname, 'folder/file');
+
+// can filter via regexp
+var fileExports = requirem('./lib/utils', /route-user-(.*)\.js/);
+// {
+//   routeUserAdmin : [Function]
+//   ...
+// }
+
 
 // can reload
-var watcher = require('gaze').Gaze('./lib/*.js');
+var watcher = requirem('gaze').Gaze('./lib/*.js');
 gaze.on('all', function(event, filepath){
   ev.delete || requirem(filepath, { reload : true })
 })
 
-// exports are camelkeyed
-var fileExports = require('./lib/utils');
-// {
-//   routeUserAdmin : [function isAdmin] file was "route-user-admin.js"
-//   routeUserSomething : [function]     file was "route.user.something.js"
-// }
-
-// can use a regex to filter files so you can fattern directories
-var fileExports = require('./lib/utils', { pattern : './route-user-(.*)\.js'});
-// {
-//   routeUserAdmin : [function isAdmin]
-//   ...
-// }
+// If a directory was a module, with its package.json
+// it will not be exported as a whole dir but as the module that is
 
 ```
 
 ## install
 
-    $ npm install --save requirem
+    $ npm install --save requiremm
 
 ### test
 
@@ -53,4 +64,4 @@ var fileExports = require('./lib/utils', { pattern : './route-user-(.*)\.js'});
 
 ### license
 
-[<img alt="LICENSE" src="http://img.shields.io/npm/l/requirem.svg?style=flat-square"/>](http://opensource.org/licenses/MIT)
+[<img alt="LICENSE" src="http://img.shields.io/npm/l/requiremm.svg?style=flat-square"/>](http://opensource.org/licenses/MIT)
