@@ -11,7 +11,7 @@ module.exports = function(requirem){
     var testModules = requirem('./modules');
     should(testModules).be.an.Object
       .and
-      .not.have.properties(
+      .have.properties(
         fs.readdirSync('./test/modules').map(function(fileName){
           return camelcase(path.basename(fileName, path.extname(fileName)));
         })

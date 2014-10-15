@@ -19,15 +19,16 @@ function requirem(pathName, _opts){
   try {
     opts.dirls = type(opts.dirls).array || fs.readdirSync(opts.pathName);
     // opts.pathName was a directory
+    var camelName = null;
     opts.dirls.forEach(function (fileName){
       if( !opts.pattern.test(fileName) ){ return ; }
       fileName = path.resolve(opts.pathName, fileName);
-      var name = camelcase(path.basename(fileName, path.extname(fileName)));
+      camelName = camelcase(path.basename(fileName, path.extname(fileName)));
       // camelcase'em & is no need for fileExports['some-key']
       if( opts.reload ){ delete require.cache[fileName]; }
-      fileExports[name] = require(fileName);
+      fileExports[camelName] = require(fileName);
     });
-    opts = error = null; // wipe
+    error = null; // wipe
     return fileExports;
   } catch(err){ error = err; }
   //
