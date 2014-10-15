@@ -25,7 +25,7 @@ var myProject = requirem(); // equivalent to require('./.') from any dir
 // }
 
 // exports are camelkeyed
-var fileExports = requirem('./lib/utils');
+var fileExports = requirem('./routes');
 // {
 //       routeUserAdmin : [Function]  file was "route-user-admin.js"
 //   routeUserSomething : [Function]  file was "route.user.something.js"
@@ -36,10 +36,10 @@ var subDirExports = requirem(__dirname, 'file');
 var subDirExports = requirem(__dirname, 'folder/file');
 
 // can filter via regexp
-var fileExports = requirem('./lib/utils', /route-user-(.*)\.js/);
+var fileExports = requirem('./partial', /header-(.*)\.js/);
 // {
-//   routeUserAdmin : [Function]
-//   ...
+//   headerHome : [Function]
+//   headerSomething : [Function]
 // }
 
 
