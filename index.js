@@ -44,6 +44,6 @@ function requirem( dirName, pathName){
     return true;
   });
 
-  return dirls.length < 2 ? fileExports[camelName] : fileExports;
+  return fileExports;
 }
 module.exports = requirem;
