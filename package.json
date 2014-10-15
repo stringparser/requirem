@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "callers-path": "*",
-    "camelcase": "^1.0.1",
-    "utils-type": "^0.8.10"
+    "camelcase": "*",
+    "utils-type": "*"
   }
 }
