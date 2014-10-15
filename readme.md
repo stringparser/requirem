@@ -54,7 +54,7 @@ gaze.on('all', function(event, filepath){
 
 ```
 
-50 SLOC
+~ 50 SLOC
 
 ## install
 
