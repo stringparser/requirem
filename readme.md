@@ -49,10 +49,12 @@ gaze.on('all', function(event, filepath){
   ev.delete || requirem(filepath, { reload : true })
 })
 
-// If a directory was a module, with its package.json
-// it will not be exported as a whole dir but as the module that is
+// If a directory is a module it will NOT 
+// be exported as a whole dir but as the module that is
 
 ```
+
+50 SLOC
 
 ## install
 
