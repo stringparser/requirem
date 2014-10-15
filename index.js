@@ -6,11 +6,14 @@ var type = require('utils-type');
 var camelcase = require('camelcase');
 var callersPath = require('callers-path');
 
-function requirem( dirName, pathName){
-  dirName = type(dirName).string || path.dirname(callersPath(requirem));
+function requirem( dirName, pathName, opts){
+  var opts = type(opts || pathName || dirName).plainObject || { };
+  opts.origin = type(opts.origin).function;
+  dirName = type(dirName).string || path.dirname(
+    callersPath(opts.origin || requirem) );
+
   var parsed = type(pathName).string
     ? path.resolve(dirName, path.basename(pathName)) : dirName;
-  var opts = type(pathName || dirName).plainObject || { };
   //
   // isModule?
   // <^> a file or something that resolves to one

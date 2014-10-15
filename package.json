@@ -29,7 +29,7 @@
     "test": "mocha --reporter spec"
   },
   "dependencies": {
-    "callers-path": "^0.9.11",
+    "callers-path": "^1.0.3",
     "camelcase": "^1.0.1",
     "utils-type": "^0.8.10"
   }
