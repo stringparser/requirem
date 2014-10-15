@@ -4,7 +4,7 @@
 [<img alt="NPM version" src="http://img.shields.io/npm/v/requiremm.svg?style=flat-square" align="right"/>](http://www.npmjs.org/package/requiremm)
 <br><br>
 
-Tiny requirem'em with knobs.
+Tiny require'em with knobs.
 
 <table>
 <tr>
