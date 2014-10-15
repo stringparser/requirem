@@ -31,7 +31,6 @@
   "dependencies": {
     "callers-path": "^0.9.11",
     "camelcase": "^1.0.1",
-    "utils-type": "^0.8.10",
-    "v8-callsites": "^1.1.0"
+    "utils-type": "^0.8.10"
   }
 }
