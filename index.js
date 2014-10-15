@@ -7,7 +7,7 @@ var camelcase = require('camelcase');
 var callersPath = require('callers-path');
 
 function requirem( dirName, pathName, opts){
-  opts = type(opts).plainObject || type(pathName).plainObject || { };
+  opts = type(opts || pathName).plainObject || type(dirName).plainObject || { };
   dirName = type(dirName).string || path.dirname(callersPath(requirem));
   var parsed = type(pathName).string
     ? path.resolve(dirName, path.basename(pathName))
@@ -34,7 +34,9 @@ function requirem( dirName, pathName, opts){
   //
   dirName = parsed;
   var camelName = null, fileExports = { };
-  opts.pattern = type(opts.pattern).regexp || /\.(js)$/i;
+  opts.pattern = type(pathName).regexp
+    || type(dirName).regexp
+    || /\.(js)$/i;
 
   dirls = dirls.filter(function (fileName){
     if( !opts.pattern.test(fileName) ){ return ; }
