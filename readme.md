@@ -1,7 +1,7 @@
-# requiremm [<img alt="progressed.io" src="http://progressed.io/bar/80" align="right"/>](https://github.com/fehmicansaglam/progressed.io)
+# requirem [<img alt="progressed.io" src="http://progressed.io/bar/80" align="right"/>](https://github.com/fehmicansaglam/progressed.io)
 
-[<img alt="build" src="http://img.shields.io/travis/stringparser/requiremm/master.svg?style=flat-square" align="left"/>](https://travis-ci.org/stringparser/requiremm/builds)
-[<img alt="NPM version" src="http://img.shields.io/npm/v/requiremm.svg?style=flat-square" align="right"/>](http://www.npmjs.org/package/requiremm)
+[<img alt="build" src="http://img.shields.io/travis/stringparser/requirem/master.svg?style=flat-square" align="left"/>](https://travis-ci.org/stringparser/requirem/builds)
+[<img alt="NPM version" src="http://img.shields.io/npm/v/requirem.svg?style=flat-square" align="right"/>](http://www.npmjs.org/package/requirem)
 <br><br>
 
 Tiny require'em with knobs.
@@ -16,7 +16,7 @@ Tiny require'em with knobs.
 ### usage
 
 ```js
-var requirem = require('requiremm');
+var requirem = require('requirem');
 
 // works with no arguments
 var myProject = requirem(); // equivalent to require('./.') from any dir
@@ -56,7 +56,7 @@ gaze.on('all', function(event, filepath){
 
 ## install
 
-    $ npm install --save requiremm
+    $ npm install --save requirem
 
 ### test
 
@@ -64,4 +64,4 @@ gaze.on('all', function(event, filepath){
 
 ### license
 
-[<img alt="LICENSE" src="http://img.shields.io/npm/l/requiremm.svg?style=flat-square"/>](http://opensource.org/licenses/MIT)
+[<img alt="LICENSE" src="http://img.shields.io/npm/l/requirem.svg?style=flat-square"/>](http://opensource.org/licenses/MIT)
