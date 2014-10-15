@@ -1,0 +1,37 @@
+{
+  "name": "requirem",
+  "main": "index.js",
+  "version": "0.5.0",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*"
+  },
+  "author": "Javier Carrillo",
+  "description": "requirem",
+  "repository": "stringparser/requirem",
+  "homepage": "https://github.com/stringparser/requirem",
+  "keywords": [
+    "utils",
+    "require",
+    "module",
+    "directory",
+    "files"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stringparser/requirem/issues"
+  },
+  "scripts": {
+    "lint": "jshint index.js --reporter node_modules/jshint-stylish/stylish.js --exclude node_modules",
+    "test": "mocha --reporter spec test/_main.js"
+  },
+  "dependencies": {
+    "callers-path": "^0.9.11",
+    "camelcase": "^1.0.1",
+    "utils-type": "^0.8.10",
+    "v8-callsites": "^1.1.0"
+  }
+}
