@@ -12,22 +12,26 @@ function requirem( dirName, pathName, opts){
   var parsed = type(pathName).string
     ? path.resolve(dirName, path.basename(pathName))
     : dirName;
-
-  // module? file or something that resolves to one
+  //
+  // module?
+  // <^> file or something that resolves to one
   var resolveError = null;
   try {
     parsed = require.resolve(parsed);
     if( opts.reload ){ delete require.cache[parsed]; }
     return require(parsed);
   } catch(err) { resolveError = err; }
-
+  //
   // plain directories left
-  var dirError = null, dirls = null;
+  //
+  var dirls = null;
+  var dirError = null;
   try { dirls = fs.readdirSync(parsed); }
     catch(err){ dirError = err; }
   if( dirError ){ throw resolveError || dirError; }
-
-  // path resolved is a directory and exists
+  //
+  // path is dir and exists
+  //
   dirName = parsed;
   var camelName = null, fileExports = { };
   var pattern = type(opts.pattern).regexp || /\.(js)$/i;
@@ -36,7 +40,8 @@ function requirem( dirName, pathName, opts){
     if( !pattern.test(fileName) ){ return ; }
     parsed = path.resolve(dirName, fileName);
     camelName = camelcase(path.basename(fileName, path.extname(fileName)));
-    // ^ camelcased so there is no need for fileExports['some-key']
+    //
+    // camelcase'em so there is no need for fileExports['some-key']
     if( opts.reload ){ delete require.cache[parsed]; }
 
     fileExports = fileExports || { };
@@ -44,7 +49,6 @@ function requirem( dirName, pathName, opts){
       catch(err){ throw err; }
     return true;
   });
-
   return dirls.length < 2 ? fileExports[camelName] : fileExports;
 }
 module.exports = requirem;
