@@ -11,16 +11,16 @@ function requirem(pathName, _opts){
   var error, opts = type(_opts || pathName).plainObject || { };
   opts.origin = type(opts.origin).function || requirem;
   opts.pattern = type(opts.pattern || _opts || pathName).regexp || /\.(js)$/i;
-  opts.dirName = type(opts.dirName || _opts).string || '';
   opts.pathName = (type(pathName).string || '').replace(/^\./, function(){
-      return path.dirname(path.join(callersPath(opts.origin), opts.dirName));
+      return path.dirname(
+        path.join(callersPath(opts.origin), type(opts.dirName || _opts).string || '')
+      );
     });
 
-  var fileExports = { };
+  var camelName, fileExports = { };
   try {
     opts.dirls = type(opts.dirls).array || fs.readdirSync(opts.pathName);
     // opts.pathName was a directory
-    var camelName = null;
     opts.dirls.forEach(function (fileName){
       if( !opts.pattern.test(fileName) ){ return ; }
       fileName = path.resolve(opts.pathName, fileName);
@@ -31,10 +31,10 @@ function requirem(pathName, _opts){
     });
     error = null; // wipe
     return fileExports;
-  } catch(err){ error = err; }
+  } catch(err){ error = err; } // it also can be a module
   //
   // opts.pathName should be a module
-  // <^> that is... file
+  //     <^> that is... file
   try {
     opts.pathName = require.resolve(opts.pathName);
     opts.loaded = !opts.reload || delete require.cache[opts.pathName];
@@ -45,6 +45,5 @@ function requirem(pathName, _opts){
        else { throw err; }
      });
   }
-  // directory?
 }
 module.exports = requirem;
