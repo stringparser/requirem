@@ -32,7 +32,7 @@ function requirem(pathName, _opts){
   } catch(err){ error = err; }
   //
   // opts.pathName should be a module
-  // <^> meaning: file
+  // <^> that is... file
   try {
     opts.pathName = require.resolve(opts.pathName);
     opts.loaded = !opts.reload || delete require.cache[opts.pathName];
