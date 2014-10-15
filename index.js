@@ -39,10 +39,9 @@ function requirem( dirName, pathName){
     if( !opts.pattern.test(fileName) ){ return ; }
     parsed = path.resolve(dirName, fileName);
     camelName = camelcase(path.basename(fileName, path.extname(fileName)));
-    //
     // camelcase'em so there is no need for fileExports['some-key']
+    //
     if( opts.reload ){ delete require.cache[parsed]; }
-
     fileExports = fileExports || { };
     try { fileExports[camelName] = require(parsed); }
       catch(err){ throw err; }
