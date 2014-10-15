@@ -27,8 +27,8 @@ var myProject = requirem(); // equivalent to require('./.') from any dir
 // exports are camelkeyed
 var fileExports = requirem('./routes');
 // {
-//       routeUserAdmin : [Function]  file was "route-user-admin.js"
-//   routeUserSomething : [Function]  file was "route.user.something.js"
+//       userAdmin : [Function]  file was "user-admin.js"
+//   userSomething : [Function]  file was "user.something.js"
 // }
 
 // can requirem sub directories or files
