@@ -25,7 +25,6 @@ function requirem(pathName, _opts){
     opts.pathName = require.resolve(opts.pathName);
     if(opts.reload){ delete require.cache[opts.pathName]; }
     fileExports = require(opts.pathName);
-    require.cache[opts.pathName].exports = fileExports;
     opts = requireError = null; // wipe
     return fileExports;
   } catch(err) { requireError = err; }
@@ -43,7 +42,6 @@ function requirem(pathName, _opts){
       // camelcase'em & is no need for fileExports['some-key']
       if(opts.reload){ delete require.cache[fileName]; }
       fileExports[camelName] = require(fileName);
-      require.cache[fileName].exports = fileExports[camelName];
     });
     opts = requireError = null; // wipe
     return fileExports;
