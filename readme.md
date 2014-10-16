@@ -19,16 +19,18 @@
 ```js
 var requirem = require('requirem');
 
-// works with no arguments
-var myProject = requirem(); // equivalent to require('./.') from any dir
+// works with no arguments,
+var myProject = requirem(); 
+// equivalent to require('./.') from any dir
 
-// for directories
+// for directories,
 var dirExports = requirem('./folder');
 var dirExports = requirem('./folder/subfolder');
 
 // and modules
-var gaze = requirem('./lib/utils'); 
-var gaze = new requirem('gaze').Gaze('./lib/*.js');
+var util = requirem('./lib/utils');
+// if ./lib/utils is a module 
+// it will be required as so even if it was a directory
 
 // exports are camelkeyed
 var dirExports = requirem('./routes'); 
@@ -46,7 +48,8 @@ var headerExports = requirem('./partial', /header-(.*)\.js/);
 //   headerSomething : [Function]
 // }
 
-// reload
+// reload option cleans the require.cache
+var gaze = new requirem('gaze').Gaze('./lib/*.js');
 gaze.on('all', function(ev, filepath){
   ev.delete || requirem(filepath, { reload : true })
 });
