@@ -6,11 +6,11 @@
 
 Tiny, require 'em things with knobs.
 
-Unicorn approval pending.
 <p align="center">
   <a hef="https://github.com/503.html">
-    <img height="50" src="https://raw.githubusercontent.com/stringparser/requirem/master/gh-503-unicorn.png" />
+    <img height="200" src="https://raw.githubusercontent.com/stringparser/requirem/master/gh-503-unicorn.png" />
   </a>
+  <p>Unicorn approval pending.</p>
 </p>
 
 
