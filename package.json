@@ -1,7 +1,7 @@
 {
   "name": "requirem",
   "main": "index.js",
-  "version": "0.5.5",
+  "version": "0.5.6",
   "engines": {
     "node": ">= 0.10.0"
   },
@@ -18,7 +18,11 @@
     "require",
     "module",
     "directory",
-    "files"
+    "files",
+    "filter",
+    "regexp",
+    "regex",
+    "small"
   ],
   "license": "MIT",
   "bugs": {
