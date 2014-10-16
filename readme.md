@@ -10,7 +10,7 @@
   </a>
 </p>
 <p align="center">
-  <a href="https://github.com/503.html">Unicorn approval</a>pending.
+  <a href="https://github.com/503.html">Unicorn approval</a> pending.
 </p>
 
 
