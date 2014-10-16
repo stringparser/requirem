@@ -14,7 +14,9 @@ function requirem(pathName, _opts){
 
   opts.pathName = (type(opts.pathName || pathName).string || ' ')
     .replace(/^\.|^[ ]$/, function(){
-      return path.dirname(callersPath(type(opts.origin || choose).function || requirem));
+      return path.resolve(
+        path.dirname(callersPath(type(opts.origin || choose).function || requirem))
+      );
     });
   //
   // isModule?
