@@ -10,7 +10,7 @@
     "should": "*"
   },
   "author": "Javier Carrillo",
-  "description": "Tiniy, require 'em things with knobs",
+  "description": "Tiny, require 'em things with knobs",
   "repository": "stringparser/requirem",
   "homepage": "https://github.com/stringparser/requirem",
   "keywords": [
