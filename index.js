@@ -7,7 +7,7 @@ var camelcase = require('camelcase');
 var callersPath = require('callers-path');
 
 function requirem(pathName, _opts){
-  var dirError = null, choose = _opts || pathName;
+  var dirnameError = null, choose = _opts || pathName;
   var opts = type(choose).plainObject || { };
   opts.pathName = (type(pathName).string || ' ').replace(/^\.|^[ ]$/, function(){
       opts.dirName = type(opts.dirName).string || '.';
@@ -28,9 +28,9 @@ function requirem(pathName, _opts){
       if( opts.reload ){ delete require.cache[fileName]; }
       fileExports[camelName] = require(fileName);
     });
-    opts = dirError = null; // wipe
+    opts = dirnameError = null; // wipe
     return fileExports;
-  } catch(err){ dirError = err; } // it also can be a module
+  } catch(err){ dirnameError = err; } // it also can be a module
   //
   // opts.pathName module or it doesn't exists
   // <^> that is... file
@@ -42,7 +42,7 @@ function requirem(pathName, _opts){
     // we are throwing here anyway
     fs.exists(opts.pathName, function(exists){
       if( exists ){ throw requireError; }
-      else        { throw dirError; }
+      else        { throw dirnameError; }
     });
   }
 }
