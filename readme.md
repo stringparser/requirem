@@ -4,14 +4,7 @@
 [<img alt="NPM version" src="http://img.shields.io/npm/v/requirem.svg?style=flat-square" align="right"/>](http://www.npmjs.org/package/requirem)
 <br><br>
 
-Tiny require'em with knobs.
-
-<table>
-<tr>
-<td>Node Version</td>
-<td>>= 0.8</td>
-</tr>
-</table>
+Tiny require'em things with knobs.
 
 ### usage
 
@@ -20,38 +13,35 @@ var requirem = require('requirem');
 
 // works with no arguments
 var myProject = requirem(); // equivalent to require('./.') from any dir
-// {
-//   someFile : [Function: someFunction] 
-// }
+
+// for directories
+var dirExports = requirem('./folder');
+var dirExports = requirem('./folder/subfolder');
+
+// and modules
+var gaze = requirem('./lib/utils'); 
+var gaze = new requirem('gaze').Gaze('./lib/*.js');
 
 // exports are camelkeyed
-var fileExports = requirem('./routes');
+var dirExports = requirem('./routes'); 
+// ./routes was a directory but not a module
 // {
 //       userAdmin : [Function]  file was "user-admin.js"
 //   userSomething : [Function]  file was "user.something.js"
 // }
 
-// can requirem sub directories or files
-var subDirExports = requirem(__dirname, 'file');
-var subDirExports = requirem(__dirname, 'folder/file');
-
-// can filter via regexp
-var fileExports = requirem('./partial', /header-(.*)\.js/);
+// filters via regexp
+var headerExports = requirem(/header-(.*)\.js/);
+var headerExports = requirem('./partial', /header-(.*)\.js/);
 // {
 //   headerHome : [Function]
 //   headerSomething : [Function]
 // }
 
-
-// can reload
-var gaze = new requirem('gaze').Gaze('./lib/*.js')
+// reload
 gaze.on('all', function(ev, filepath){
   ev.delete || requirem(filepath, { reload : true })
 });
-
-// If a directory is a module it will NOT 
-// be exported as a whole dir but as the module that is
-
 ```
 
 ~ 50 SLOC
