@@ -3,12 +3,13 @@
 [<img alt="build" src="http://img.shields.io/travis/stringparser/requirem/master.svg?style=flat-square" align="left"/>](https://travis-ci.org/stringparser/requirem/builds)
 [<img alt="NPM version" src="http://img.shields.io/npm/v/requirem.svg?style=flat-square" align="right"/>](http://www.npmjs.org/package/requirem)
 <br><br>
+<p align="center">Tiny, require 'em things with knobs.</p>
 <p align="center">
-  <p align="center">Tiny, require 'em things with knobs.</p>
   <a hef="https://github.com/503.html">
     <img height="200" src="https://raw.githubusercontent.com/stringparser/requirem/master/gh-503-unicorn.png" />
-  </a><p align="center">Unicorn approval pending.</p>
+  </a>
 </p>
+<p align="center">Unicorn approval pending.</p>
 
 
 ### usage
