@@ -14,13 +14,11 @@ function requirem(pathName, _opts){
 
   opts.pathName = (type(opts.pathName || pathName).string || ' ')
     .replace(/^\.|^[ ]$/, function(){
-      opts.dirName = type(opts.dirName).string || '.';
-      opts.origin = type(opts.origin || choose).function || requirem;
-      return path.dirname( path.resolve(callersPath(opts.origin), opts.dirName) );
+      return path.dirname(callersPath(type(opts.origin || choose).function || requirem));
     });
   //
   // isModule?
-  // <^> that is... file
+  // <^^> that is... file
   try {
     opts.pathName = require.resolve(opts.pathName);
     if(opts.reload){ delete require.cache[opts.pathName]; }
