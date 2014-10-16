@@ -9,10 +9,10 @@ var callersPath = require('callers-path');
 function requirem(pathName, _opts){
   var dirError = null, choose = _opts || pathName;
   var opts = type(choose).plainObject || { };
-  opts.pathName = (type(pathName).string || '').replace(/^\./, function(){
-      opts.dirName = type(opts.dirName).string || '';
+  opts.pathName = (type(pathName).string || ' ').replace(/^\.|^[ ]$/, function(){
+      opts.dirName = type(opts.dirName).string || '.';
       opts.origin = type(opts.origin || choose).function || requirem;
-      return path.dirname( path.join(callersPath(opts.origin), opts.dirName) );
+      return path.dirname( path.resolve(callersPath(opts.origin), opts.dirName) );
     });
 
   var camelName, fileExports = { };
