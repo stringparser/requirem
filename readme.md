@@ -9,8 +9,7 @@ Tiny, require 'em things with knobs.
 <p align="center">
   <a hef="https://github.com/503.html">
     <img height="200" src="https://raw.githubusercontent.com/stringparser/requirem/master/gh-503-unicorn.png" />
-  </a>
-  <p>Unicorn approval pending.</p>
+  </a><p align="center">Unicorn approval pending.</p>
 </p>
 
 
