@@ -7,15 +7,31 @@ var camelcase = require('camelcase');
 var callersPath = require('callers-path');
 
 function requirem(pathName, _opts){
-  var dirnameError = null, choose = _opts || pathName;
+  var fileExports = { };
+  var requireError = null;
+  var choose = _opts || pathName;
   var opts = type(choose).plainObject || { };
-  opts.pathName = (type(pathName).string || ' ').replace(/^\.|^[ ]$/, function(){
+
+  opts.pathName = (type(opts.pathName || pathName).string || ' ')
+    .replace(/^\.|^[ ]$/, function(){
       opts.dirName = type(opts.dirName).string || '.';
       opts.origin = type(opts.origin || choose).function || requirem;
       return path.dirname( path.resolve(callersPath(opts.origin), opts.dirName) );
     });
-
-  var camelName, fileExports = { };
+  //
+  // isModule?
+  // <^> that is... file
+  try {
+    opts.pathName = require.resolve(opts.pathName);
+    if(opts.reload){ delete require.cache[opts.pathName]; }
+    fileExports = require(opts.pathName);
+    require.cache[opts.pathName].exports = fileExports;
+    opts = requireError = null; // wipe
+    return fileExports;
+  } catch(err) { requireError = err; }
+  //
+  // not throwing yet, can be a directory
+  //
   try {
     opts.dirls = type(opts.dirls || choose).array || fs.readdirSync(opts.pathName);
     // opts.pathName was a directory
@@ -23,26 +39,19 @@ function requirem(pathName, _opts){
     opts.dirls.forEach(function (fileName){
       if( !opts.pattern.test(fileName) ){ return ; }
       fileName = path.join(opts.pathName, fileName);
-      camelName = camelcase(path.basename(fileName, path.extname(fileName)));
+      var camelName = camelcase(path.basename(fileName, path.extname(fileName)));
       // camelcase'em & is no need for fileExports['some-key']
-      if( opts.reload ){ delete require.cache[fileName]; }
+      if(opts.reload){ delete require.cache[fileName]; }
       fileExports[camelName] = require(fileName);
+      require.cache[fileName].exports = fileExports[camelName];
     });
-    opts = dirnameError = null; // wipe
+    opts = requireError = null; // wipe
     return fileExports;
-  } catch(err){ dirnameError = err; } // it also can be a module
-  //
-  // opts.pathName module or it doesn't exists
-  // <^> that is... file
-  try {
-    opts.pathName = require.resolve(opts.pathName);
-    opts.loaded = !opts.reload || delete require.cache[opts.pathName];
-    return require(opts.pathName);
-  } catch(requireError) {
+  } catch(dirnameError){
     // we are throwing here anyway
     fs.exists(opts.pathName, function(exists){
-      if( exists ){ throw requireError; }
-      else        { throw dirnameError; }
+      if( exists ){ throw dirnameError; }
+      else        { throw requireError; }
     });
   }
 }

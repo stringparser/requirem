@@ -8,7 +8,7 @@ var camelcase = require('camelcase');
 module.exports = function(requirem){
 
   it('should get directories', function(){
-    var testModules = requirem('./modules');
+    var testModules = requirem('./modules/');
     should(testModules).be.an.Object
       .and
       .have.properties(
