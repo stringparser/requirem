@@ -3,8 +3,8 @@
 var fs = require('fs');
 var path = require('path');
 var type = require('utils-type');
-var camelcase = require('camelcase');
 var callersPath = require('callers-path');
+var camelcase = require('./utils/camelcase');
 
 function requirem(pathName, _opts){
   var fileExports = { };

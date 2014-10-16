@@ -3,7 +3,7 @@
 var fs = require('fs');
 var path = require('path');
 var should = require('should');
-var camelcase = require('camelcase');
+var camelcase = require('../utils/camelcase');
 
 module.exports = function(requirem){
 
