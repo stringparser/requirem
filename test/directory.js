@@ -7,7 +7,7 @@ var camelcase = require('camelcase');
 
 module.exports = function(requirem){
 
-  it('should get directories', function(){
+  it('should get directories with camelCased keys', function(){
     var testModules = requirem('./modules/');
     should(testModules).be.an.Object
       .and
