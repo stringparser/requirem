@@ -28,7 +28,7 @@ function requirem(pathName, _opts){
       if( opts.reload ){ delete require.cache[fileName]; }
       fileExports[camelName] = require(fileName);
     });
-    error = null; // wipe
+    opts = error = null; // wipe
     return fileExports;
   } catch(err){ error = err; } // it also can be a module
   //
@@ -39,10 +39,9 @@ function requirem(pathName, _opts){
     opts.loaded = !opts.reload || delete require.cache[opts.pathName];
     return require(opts.pathName);
   } catch(err) {
-     fs.exists(opts.pathName, function(exists){
-       if( exists ){ throw error; }
-       else { throw err; }
-     });
+    // we are throwing here anyway
+    if( fs.existsSync(opts.pathName) ){ throw err; }
+    else{ throw error; }
   }
 }
 module.exports = requirem;
